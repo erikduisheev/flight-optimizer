@@ -17,7 +17,8 @@ setup(
     author_email='erik.duisheev@gmail.com',
     packages=find_packages(),
     install_requires=[
-        'Click',
+        'click==7.1.2',
+        'pytest',
     ],
     entry_points={
         'console_scripts': [
