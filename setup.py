@@ -9,12 +9,13 @@ with open(join(this_dir, 'README.md'), encoding='utf-8') as file:
 
 setup(
     name='flight-optimizer',
-    version='0.1.0',
-    python_requires='>=3.6.10,<4.0',
+    version='0.0.0',
+    python_requires='>=3.5,<4.0',
     description='Package that searches for the cheapest airplane flights per kilometer.',
     long_description=long_description,
     author='Erik Duisheev',
     author_email='erik.duisheev@gmail.com',
+    license='UNLICENSE',
     packages=find_packages(),
     install_requires=[
         'click==7.1.2',
