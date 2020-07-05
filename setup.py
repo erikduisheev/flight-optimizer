@@ -20,6 +20,9 @@ setup(
     install_requires=[
         'click==7.1.2',
         'pytest',
+        'dataclasses',
+        'requests',
+        'haversine',
     ],
     entry_points={
         'console_scripts': [
