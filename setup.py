@@ -10,7 +10,7 @@ with open(join(this_dir, 'README.md'), encoding='utf-8') as file:
 setup(
     name='flight-optimizer',
     version='0.0.0',
-    python_requires='>=3.5,<4.0',
+    python_requires='>=3.6,<4.0',
     description='Package that searches for the cheapest airplane flights per kilometer.',
     long_description=long_description,
     author='Erik Duisheev',
@@ -19,10 +19,10 @@ setup(
     packages=find_packages(),
     install_requires=[
         'click==7.1.2',
-        'pytest',
-        'dataclasses',
-        'requests',
-        'haversine',
+        'pytest==5.4.3',
+        'dataclasses==0.6',
+        'requests==2.24.0',
+        'haversine==2.2.0',
     ],
     entry_points={
         'console_scripts': [
