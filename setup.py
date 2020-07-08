@@ -7,7 +7,7 @@ with open(join(this_dir, 'README.md'), encoding='utf-8') as file:
 
 setup(
     name='flight-optimizer',
-    version='0.1.0',
+    version='0.2.0',
     python_requires='>=3.6,<4.0',
     description='Package that searches for the cheapest airplane flights per kilometer.',
     long_description=long_description,
