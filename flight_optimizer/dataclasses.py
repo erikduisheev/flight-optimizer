@@ -82,4 +82,3 @@ class Flight:
 class Route:
     departure: Location
     destination: Location
-

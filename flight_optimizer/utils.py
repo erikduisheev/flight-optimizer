@@ -2,7 +2,7 @@ from datetime import date, timedelta
 from typing import Iterable
 
 import requests
-from .dataclasses import Airport, City, Flight, Location, Route
+from .dataclasses import Airport, City, Flight, Location
 
 DATE_FORMAT = "%d/%m/%Y"
 
@@ -45,8 +45,6 @@ class FlightOptimizer:
 
     @staticmethod
     def _get_best_flight(departure: Location, destination: Location) -> Flight:
-        # departure = route.departure
-        # destination = route.destination
 
         if not departure.airport.is_found or not destination.airport.is_found:
             return Flight(is_found=False, departure=departure, destination=destination)
