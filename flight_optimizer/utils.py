@@ -13,27 +13,46 @@ LOCATIONS_URL = "https://api.skypicker.com/locations"
 class FlightOptimizer:
 
     def __init__(self, departure: str, destinations: Iterable[str]) -> Iterable[Flight]:
+        '''
+        :param departure: from city (user's input)
+        :param destinations: to cities, might be multiple (user's input)
+        '''
         self.departure = departure
         self.destinations = destinations
 
     def process(self):
+        '''Processes all steps of searching the best flights to all destinations
+
+        :return: list of flights data sorted by price per kilometer
+        '''
+
+        # get cities' data
         departure_city = self.get_city(self.departure)
         destination_cities = list(map(self.get_city, self.destinations))
 
+        # get airports' data based on cities' data
         departure_airport = self._get_airport(departure_city)
         destination_airports = list(map(self._get_airport, destination_cities))
 
+        # search for the best flights
         best_flights = [
             self._get_best_flight(departure_airport, destination_airport)
             for destination_airport in destination_airports
         ]
 
+        # sort flights based on price per kilometer parameter
         sorted_flights = sorted(best_flights, key=lambda flight: flight.price_per_kilometer)
 
         return sorted_flights
 
     @staticmethod
     def get_result_explanation(flights: Iterable[Flight]) -> str:
+        '''Generates search explanation message
+
+        :param flights: for which explanations were requested
+        :return: explanation and suggestions message (string)
+        '''
+
         departure_explanation = flights[0].departure.city.get_explanation_message()
         destination_explanations = [flight.destination.city.get_explanation_message() for flight in flights]
 
@@ -45,7 +64,14 @@ class FlightOptimizer:
 
     @staticmethod
     def _get_best_flight(departure: Location, destination: Location) -> Flight:
+        '''Searches the best flight between two cities
 
+        :param departure: main airport of city
+        :param destination: main airport of city
+        :return: data about best flight
+        '''
+
+        # if departure or destination airport was not found return not found flight
         if not departure.airport.is_found or not destination.airport.is_found:
             return Flight(is_found=False, departure=departure, destination=destination)
 
@@ -68,6 +94,7 @@ class FlightOptimizer:
         response = requests.get(AGGREGATION_FLIGHTS_URL, params=query)
         data = response.json()
 
+        # if there is no destination in response, set flight's is_found field to False
         if 'data' not in data or destination.city.id not in data['data']:
             return Flight(is_found=False, departure=departure, destination=destination)
 
@@ -80,6 +107,11 @@ class FlightOptimizer:
 
     @staticmethod
     def _get_airport(city: City) -> Location:
+        '''Searches for airport of the city
+
+        :param city: name and id
+        :return: data about the airport: name, international code and location
+        '''
 
         query = {
             'term': city.id,
@@ -90,12 +122,14 @@ class FlightOptimizer:
             'sort': 'rank'
         }
 
+        # if city was not found, then return not found airport
         if not city.is_found:
             return Location(city=city, airport=Airport(is_found=False))
 
         response = requests.get(LOCATIONS_URL, params=query)
         data = response.json()
 
+        # if there is no any airports in response, set airport's is_found field to False
         if 'locations' not in data or len(data['locations']) == 0:
             return Location(city=city, airport=Airport(is_found=False))
 
@@ -116,20 +150,28 @@ class FlightOptimizer:
 
     @staticmethod
     def get_city(city: str) -> City:
+        """Searches for the given city
+
+        :param city: name from user input
+        :return: data about the city: name and id
+        """
         query = {
             'term': city,
             'location_types': 'city',
             'active_only': 'true',
-            'limit': 5,
+            'limit': 5,  # get 5 possible cities for suggestions
         }
 
         response = requests.get(LOCATIONS_URL, params=query)
         data = response.json()
 
+        # if there is any data in response, set city's is_found field to False
         if 'locations' not in data or len(data['locations']) == 0:
             return City(is_found=False, input_name=city)
 
         cities = data['locations']
+
+        # get 5 city names and their country for suggestions
         correct_name_options = list(
             map(
                 lambda possible_city: (possible_city['name'], possible_city['country']['name']),
