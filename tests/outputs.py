@@ -43,8 +43,9 @@ class Output:
         'From Paris, Paris Orly:\n' \
         'To New York, John F. Kennedy International              $383 / 5834 km       = $0.07 per km\n\n' \
         'Explanation and suggestions:\n' \
-        'Entered city name "pari" was misspelled. It was assumed as "Paris". ' \
-        'Maybe you meant next options: "Parikia", "Parintins", "Saint Joseph Parish"\n'
+        'City "pari" was misspelled. It was assumed as "Paris" in France.\n' \
+        'Maybe you meant next options: "Parikia" in Greece, "Parintins" in Brazil, ' \
+        '"Saint Joseph Parish" in Dominica\n'
 
     TEST_SEARCH_FLIGHT_NOT_FOUND = \
         'Unfortunately, there is no any flights to all destinations. Try other routes.\n'
@@ -52,9 +53,11 @@ class Output:
     TEST_SEARCH_NO_FLIGHT_DUE_TO_CITY_NOT_FOUND = \
         'Unfortunately, there is no any flights to all destinations. Try other routes.\n\n' \
         'Explanation and suggestions:\n' \
-        'Entered city name "asdghjaskgdj" was misspelled. No assumption found.\n'
+        'City "asdghjaskgdj" was misspelled. No assumption found.\n'
 
     TEST_FLIGHT_OPTIMIZER_GET_RESULT_EXPLANATION = \
         '\nExplanation and suggestions:\n' \
-        'Entered city name "pari" was misspelled. It was assumed as "Paris". ' \
-        'Maybe you meant next options: "Parikia", "Parintins", "Saint Joseph Parish"'
+        'City "pari" was misspelled. It was assumed as "Paris" in France.\n' \
+        'Maybe you meant next options: "Parikia" in Greece, "Parintins" in Brazil, ' \
+        '"Saint Joseph Parish" in Dominica' \
+

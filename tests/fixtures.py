@@ -15,7 +15,12 @@ def test_city_paris():
         name='Paris',
         input_name='pari',
         is_found=True,
-        correct_name_options=['Paris', 'Parikia', 'Parintins', 'Saint Joseph Parish']
+        correct_name_options=[
+            ('Paris', 'France'),
+            ('Parikia', 'Greece'),
+            ('Parintins', 'Brazil'),
+            ('Saint Joseph Parish', 'Dominica')
+        ]
     )
 
 
@@ -44,7 +49,11 @@ def test_city_london():
         name='London',
         input_name='london',
         is_found=True,
-        correct_name_options=['Londrina', 'East London']
+        correct_name_options=[
+            ('London', 'United Kingdom'),
+            ('Londrina', 'Brazil'),
+            ('East London', 'South Africa'),
+        ]
     )
 
 
@@ -73,7 +82,7 @@ def test_city_new_york():
         name='New York',
         input_name='new york',
         is_found=True,
-        correct_name_options=['New York']
+        correct_name_options=[('New York', 'United States')]
     )
 
 

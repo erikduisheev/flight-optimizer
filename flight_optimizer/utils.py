@@ -130,7 +130,12 @@ class FlightOptimizer:
             return City(is_found=False, input_name=city)
 
         cities = data['locations']
-        correct_name_options = list(map(lambda possible_city: possible_city['name'], cities))
+        correct_name_options = list(
+            map(
+                lambda possible_city: (possible_city['name'], possible_city['country']['name']),
+                cities
+            )
+        )
 
         return City(
             is_found=True,

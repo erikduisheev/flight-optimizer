@@ -10,7 +10,7 @@ class City:
     input_name: str
     id: str = None
     name: str = None
-    correct_name_options: Iterable[str] = field(default_factory=lambda: [])
+    correct_name_options: Iterable[tuple] = field(default_factory=lambda: [])
 
     def __repr__(self):
         return f'{self.name}'
@@ -18,14 +18,15 @@ class City:
     def get_explanation_message(self):
         if self.is_found:
             if self.name.lower() != self.input_name.lower():
-                output = f'Entered city name "{self.input_name}" was misspelled. ' \
-                         f'It was assumed as "{self.name}". '
+                output = f'City "{self.input_name}" was misspelled. ' \
+                         f'It was assumed as "{self.name}" in {self.correct_name_options[0][1]}.'
 
-                options = '\", \"'.join(self.correct_name_options[1:])
-                output += f'Maybe you meant next options: "{options}"' if options != '' else ''
+                options = [f'"{option[0]}" in {option[1]}' for option in self.correct_name_options[1:]]
+                options = ', '.join(options)
+                output += f'\nMaybe you meant next options: {options}' if options != '' else ''
                 return output
         else:
-            return f'Entered city name "{self.input_name}" was misspelled. No assumption found.'
+            return f'City "{self.input_name}" was misspelled. No assumption found.'
 
 
 @dataclass
@@ -82,3 +83,4 @@ class Flight:
 class Route:
     departure: Location
     destination: Location
+
