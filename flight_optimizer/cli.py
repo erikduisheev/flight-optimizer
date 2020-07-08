@@ -12,6 +12,8 @@ from .utils import FlightOptimizer
               help="If entered cities were misspelled, then it explains what cities were searched and "
                    "suggests correct city name options")
 def search(departure, destinations, all_destinations, explain_result):
+    """CLI that searches for the cheapest airplane flights per kilometer."""
+
     try:
         flight_optimizer = FlightOptimizer(departure, destinations)
         flights = flight_optimizer.process()

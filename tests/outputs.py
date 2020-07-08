@@ -1,4 +1,6 @@
 class Output:
+    '''Provides output messages for testing.'''
+
     TEST_SEARCH_WITHOUT_ARGUMENTS = \
         "Usage: search [OPTIONS]\n" \
         "Try 'search --help' for help.\n\n" \
@@ -15,7 +17,8 @@ class Output:
         "Error: no such option: --fly\n"
 
     TEST_SEARCH_HELP_MESSAGE = \
-        "Usage: search [OPTIONS]\n" \
+        "Usage: search [OPTIONS]\n\n" \
+        "  CLI that searches for the cheapest airplane flights per kilometer.\n" \
         "\n" \
         "Options:\n" \
         "  -f, --from TEXT         Departure City  [required]\n" \

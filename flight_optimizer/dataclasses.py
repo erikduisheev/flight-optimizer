@@ -16,6 +16,8 @@ class City:
         return f'{self.name}'
 
     def get_explanation_message(self):
+        """Returns information about search and suggests city options in case misspelled input"""
+
         if self.is_found:
             if self.name.lower() != self.input_name.lower():
                 output = f'City "{self.input_name}" was misspelled. ' \
@@ -23,6 +25,7 @@ class City:
 
                 options = [f'"{option[0]}" in {option[1]}' for option in self.correct_name_options[1:]]
                 options = ', '.join(options)
+
                 output += f'\nMaybe you meant next options: {options}' if options != '' else ''
                 return output
         else:
@@ -54,7 +57,7 @@ class Flight:
     departure: Location
     destination: Location
     is_found: bool
-    price: float = float('inf')
+    price: float = float('inf')  # set to 'inf' in case flight was not found
 
     @property
     def distance(self) -> float:
@@ -74,8 +77,10 @@ class Flight:
                    f'${self.price_per_kilometer:.2f} per km'
         else:
             if self.departure.airport.is_found and self.destination.airport.is_found:
+                # if airport were found, it means there is no any flights
                 return f'To {str(self.destination):50.50}   currently there is no any flights.'
             else:
+                # cities or airports were not found
                 return f'To {str(self.destination.city.input_name):50.50}   city was not found.'
 
 
