@@ -11,6 +11,7 @@ setup(
     python_requires='>=3.6,<4.0',
     description='Package that searches for the cheapest airplane flights per kilometer.',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author='Erik Duisheev',
     author_email='erik.duisheev@gmail.com',
     license='UNLICENSE',
