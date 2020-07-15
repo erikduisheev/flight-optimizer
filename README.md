@@ -2,6 +2,14 @@
 
 **Command Line Interface (CLI)** that searches for the cheapest airplane flights per kilometer.
 
+### CI / CD
+
+Github actions were used as CI / CD for this project. 
+
+Package was published to [PYPI](https://pypi.org/project/flight-optimizer/).
+
+All build and PYPI deployment statuses of the package can be found [on project's Github Actions](https://github.com/erikduisheev/flight-optimizer/actions)
+
 ### Installation:
 
 ```Shell
@@ -44,6 +52,6 @@ Maybe you meant next options: "East London" in South Africa, "Londolozi Private 
 ```
 
 ### Credits
-Developed by Erik Duisheev
+Developed by Erik Duisheev.
 
-Inspired by [B12](https://www.b12.io/about)
+Inspired by [B12 team](https://www.b12.io/about).
