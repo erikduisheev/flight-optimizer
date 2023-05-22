@@ -21,7 +21,7 @@ setup(
         'pytest==5.4.3',
         'pytest-mock==3.1.1',
         'dataclasses==0.6',
-        'requests==2.24.0',
+        'requests==2.31.0',
         'haversine==2.2.0',
     ],
     entry_points={
